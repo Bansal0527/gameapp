@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_URL = `${process.env.REACT_APP_API_URL}/api` || 'http://localhost:8000/api';
 
+console.log(API_URL)
 const api = axios.create({
   baseURL: API_URL,
   headers: {
@@ -10,6 +11,7 @@ const api = axios.create({
 });
 
 export const login = async (username, password) => {
+  console.log("API", API_URL)
   const response = await api.post('/auth/login', { username, password });
   localStorage.setItem('token', response.data.token);
   return response.data.user;
@@ -17,6 +19,7 @@ export const login = async (username, password) => {
 
 export const register = async (username, password) => {
   const response = await api.post('/auth/register', { username, password });
+  console.log("API", API_URL)
   console.log("register")
   // console.log(response.data)
   
